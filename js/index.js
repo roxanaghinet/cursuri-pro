@@ -1,4 +1,4 @@
-// js/index.js (actualizat pentru icon)
+// js/index.js (versiune corectă: un buton "Vezi detalii", un buton "Adaugă în coș")
 (async function(){
   const grid = document.getElementById('courses-grid');
   const countEl = document.getElementById('found-count');
@@ -8,14 +8,16 @@
 
   function getCart(){ try { return JSON.parse(localStorage.getItem('cart')||'[]'); } catch(e){ return []; } }
   function setCart(c){ localStorage.setItem('cart', JSON.stringify(c)); }
-  function updateCartCount(){ const c = getCart(); const n = c.reduce((s,i)=>s + (i.qty||1),0); cartCountEl.textContent = n; }
+  function updateCartCount(){ const c = getCart(); const n = c.reduce((s,i)=>s + (i.qty||1),0); if(cartCountEl) cartCountEl.textContent = n; }
 
   function createCard(p){
     const el = document.createElement('article');
     el.className = 'card';
-    // afișăm icon-ul mare în loc de imagine (dacă există icon), altfel folosim image
+
+    // vizual: emoji/icon sau imagine
     const visual = p.icon ? `<div style="font-size:48px;line-height:1;margin-bottom:6px">${p.icon}</div>` :
                    `<img src="${p.image}" alt="${p.title}">`;
+
     el.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
         <div style="flex:1">
@@ -36,14 +38,30 @@
           <div class="price">${p.price} RON</div>
           <div class="actions">
             <button class="btn ghost details" data-id="${p.id}">Vezi detalii</button>
-            <button class="btn add" data-id="${p.id}">Vezi detalii →</button>
+            <button class="btn add" data-id="${p.id}">Adaugă în coș</button>
           </div>
         </div>
       </div>
     `;
-    el.querySelectorAll('.details, .add').forEach(btn=>{
-      btn.onclick = ()=> location.href = `details.html?id=${p.id}`;
+
+    // buton Vezi detalii -> navighează la pagina de detalii
+    const detailsBtn = el.querySelector('.details');
+    detailsBtn.addEventListener('click', ()=> {
+      location.href = `details.html?id=${p.id}`;
     });
+
+    // buton Adaugă în coș -> salvează în localStorage și actualizează contorul
+    const addBtn = el.querySelector('.add');
+    addBtn.addEventListener('click', ()=>{
+      const cart = getCart();
+      const existing = cart.find(x=>x.id==p.id);
+      if(existing) existing.qty = (existing.qty||1) + 1;
+      else cart.push({id:p.id,title:p.title,price:p.price,icon:p.icon,image:p.image,qty:1});
+      setCart(cart);
+      updateCartCount();
+      showTempMessage(`${p.title} a fost adăugat în coș.`);
+    });
+
     return el;
   }
 
@@ -61,6 +79,16 @@
     } catch(e){
       grid.innerHTML = '<p>Eroare la încărcarea cursurilor.</p>';
     }
+  }
+
+  function showTempMessage(text){
+    const container = document.querySelector('.container');
+    if(!container) return;
+    const msg = document.createElement('div');
+    msg.className = 'alert';
+    msg.textContent = text;
+    container.prepend(msg);
+    setTimeout(()=> msg.remove(), 2200);
   }
 
   searchBtn.onclick = ()=> loadProducts(searchInput.value.trim());
