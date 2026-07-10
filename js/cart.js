@@ -1,4 +1,4 @@
-// cart.js
+// js/cart.js (afișare icon în coș)
 function getCart(){ try { return JSON.parse(localStorage.getItem('cart')||'[]'); } catch(e){ return []; } }
 function setCart(c){ localStorage.setItem('cart', JSON.stringify(c)); }
 function updateHeaderCount(){ const el = document.querySelector('#cart-count'); if(!el) return; const c = getCart(); el.textContent = c.reduce((s,i)=>s+(i.qty||1),0); }
@@ -24,8 +24,9 @@ function render(){
   cart.forEach(item=>{
     const sub = item.price * item.qty;
     total += sub;
+    const iconHtml = item.icon ? `<span style="font-size:20px;margin-right:8px">${item.icon}</span>` : `<img src="${item.image}" style="width:40px;height:28px;object-fit:cover;margin-right:8px">`;
     html += `<tr data-id="${item.id}">
-      <td><a href="details.html?id=${item.id}">${item.title}</a></td>
+      <td>${iconHtml}<a href="details.html?id=${item.id}">${item.title}</a></td>
       <td>${item.price} RON</td>
       <td>${item.qty}</td>
       <td>${sub} RON</td>
