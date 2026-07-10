@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Panou Administrare</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M32 6 L58 18 L32 30 L6 18 Z" fill="#fff" opacity="0.95"/>
+          <circle cx="32" cy="40" r="12" fill="#fff" opacity="0.95"/>
+        </svg>
+        <h1>CursuriPro</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Acasă</a>
+        <a href="index.html#courses">Cursuri</a>
+        <a href="cart.html">Coș (<span id="cart-count">0</span>)</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Panou Administrare</h2>
+    <p>Gestionează cursurile disponibile în magazin.</p>
+    <div style="margin:12px 0">
+      <button id="add-new" class="btn">Adaugă curs nou</button>
+      <button id="reset" class="btn ghost">Resetează date</button>
+    </div>
+    <div id="admin-area"></div>
+  </main>
+
+  <footer class="container footer">
+    <p>© CursuriPro</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
