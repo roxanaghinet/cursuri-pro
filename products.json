@@ -1,0 +1,57 @@
+[
+  {
+    "id": 0,
+    "category": "Formare",
+    "level": "Avansat",
+    "title": "Curs Instructor Preparator Formare",
+    "desc": "Devine instructor autorizat pentru formare profesională și pregătește adulți pentru piața muncii.",
+    "duration": "32h",
+    "places": 30,
+    "price": 450,
+    "image": "images/course1.svg"
+  },
+  {
+    "id": 1,
+    "category": "Comunicare",
+    "level": "Intermediar",
+    "title": "Curs Public Speaking Avansat",
+    "desc": "Tehnici avansate de retorică, storytelling și captarea audienței.",
+    "duration": "20h",
+    "places": 75,
+    "price": 400,
+    "image": "images/course2.svg"
+  },
+  {
+    "id": 2,
+    "category": "Formare",
+    "level": "Avansat",
+    "title": "Curs Formator de Formatori",
+    "desc": "Program complet pentru formatorii care doresc să certifice alți formatori.",
+    "duration": "48h",
+    "places": 25,
+    "price": 600,
+    "image": "images/course3.svg"
+  },
+  {
+    "id": 3,
+    "category": "Formare",
+    "level": "Avansat",
+    "title": "Curs Formator Autorizat",
+    "desc": "Învață cum să susții prezentări și să creezi materiale didactice.",
+    "duration": "40h",
+    "places": 50,
+    "price": 500,
+    "image": "images/course4.svg"
+  },
+  {
+    "id": 4,
+    "category": "Comunicare",
+    "level": "Intermediar",
+    "title": "Curs Public Speaking",
+    "desc": "Scapă de frica de a vorbi în public și devino un comunicator de impact.",
+    "duration": "24h",
+    "places": 100,
+    "price": 350,
+    "image": "images/course5.svg"
+  }
+]
