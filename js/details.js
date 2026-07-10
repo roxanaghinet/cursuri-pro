@@ -1,4 +1,4 @@
-// details.js
+// js/details.js (afișare icon)
 function qs(name){ return new URLSearchParams(location.search).get(name); }
 function getCart(){ try { return JSON.parse(localStorage.getItem('cart')||'[]'); } catch(e){ return []; } }
 function setCart(c){ localStorage.setItem('cart', JSON.stringify(c)); }
@@ -12,11 +12,11 @@ function updateCartCount(){ const el = document.getElementById('cart-count'); if
   const p = await API.getProduct(id);
   if(!p){ content.innerHTML = '<p>Produs inexistent.</p>'; return; }
 
+  const visual = p.icon ? `<div style="font-size:96px">${p.icon}</div>` : `<img src="${p.image}" alt="${p.title}" style="width:100%;border-radius:10px">`;
+
   content.innerHTML = `
     <div style="display:flex;gap:20px;flex-wrap:wrap">
-      <div style="flex:1;min-width:280px">
-        <img src="${p.image}" alt="${p.title}" style="width:100%;border-radius:10px">
-      </div>
+      <div style="flex:1;min-width:280px">${visual}</div>
       <div style="flex:1;min-width:280px">
         <div class="tag">${p.level}</div>
         <h2 style="margin-top:8px">${p.title}</h2>
@@ -39,7 +39,7 @@ function updateCartCount(){ const el = document.getElementById('cart-count'); if
     const cart = getCart();
     const existing = cart.find(x=>x.id==p.id);
     if(existing) existing.qty = (existing.qty||1) + 1;
-    else cart.push({id:p.id,title:p.title,price:p.price,image:p.image,qty:1});
+    else cart.push({id:p.id,title:p.title,price:p.price,icon:p.icon,image:p.image,qty:1});
     setCart(cart);
     updateCartCount();
     const msg = document.getElementById('msg');
