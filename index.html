@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CursuriPro - Acasă</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- logo simplu SVG -->
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M32 6 L58 18 L32 30 L6 18 Z" fill="#fff" opacity="0.95"/>
+          <circle cx="32" cy="40" r="12" fill="#fff" opacity="0.95"/>
+        </svg>
+        <h1>CursuriPro</h1>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Acasă</a>
+        <a href="index.html#courses">Cursuri</a>
+        <a href="cart.html">Coș (<span id="cart-count">0</span>)</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="kicker">Platformă de formare profesională</div>
+        <h2>Investește în dezvoltarea ta</h2>
+        <p>Cursuri autorizate pentru formatori și comunicare. Locuri limitate, certificate recunoscute, instructori cu experiență.</p>
+        <div class="search" role="search">
+          <input id="search-input" placeholder="Caută cursuri..." aria-label="Caută cursuri">
+          <button id="search-btn">Caută</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- spațiu pentru imagine/ilustrație -->
+        <img src="images/course1.svg" alt="" style="width:220px;border-radius:8px">
+      </div>
+    </section>
+
+    <section id="courses" style="margin-top:18px">
+      <div class="section-title">
+        <h3>Cursuri Disponibile</h3>
+        <div id="found-count">0 cursuri găsite</div>
+      </div>
+      <div class="courses-grid" id="courses-grid"></div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>© CursuriPro</p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
